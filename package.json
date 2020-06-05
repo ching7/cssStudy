@@ -1,0 +1,22 @@
+{
+  "name": "cssstudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ching7/cssStudy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ching7/cssStudy/issues"
+  },
+  "homepage": "https://github.com/ching7/cssStudy#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
+}

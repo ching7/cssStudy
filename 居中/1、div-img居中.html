@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" style="display: inline-block;">
+    <div class='imgWin' ref="imgWin" :style="`width:300px;height:300px`">
+      <div class="imgBut" @click="uploadFile" v-show="imgButShow">
+        <span class="imgBut-but"></span>
+        <input type="file" ref="uploadFile" class="imgBut-file" accept="image/jpg,image/jpeg" multiple="multiple"
+          @change="addImage">
+        <p>点击上传</p>
+      </div>
+      <div class="imgWin-main" ref="imgWin" @mouseover="showReBut" @mouseleave="hideReBut">
+        <span v-show="imgSrc && reUploadBut" style="position: absolute; cursor: pointer;z-index:999;"
+          @click="uploadFile">上传</span>
+        <img :src="imgSrc" ref="faceImg" alt="" v-show="imgSrc" class="imgWin-img">
+      </div>
+    </div>
+  </div>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          imgSrc: '',
+          imgButShow: true,
+          reUploadBut: false
+        }
+      },
+      methods: {
+        showReBut() {
+          this.$refs.faceImg.style = 'opacity: 0.5;'
+          this.reUploadBut = true
+        },
+        hideReBut() {
+          this.$refs.faceImg.style = 'opacity: 1;'
+          this.reUploadBut = false
+        },
+        uploadFile() {
+          this.$refs.uploadFile.click()
+        },
+        addImage() {
+          let file = this.$refs.uploadFile.files[0]
+          this.imgSrc = window.URL.createObjectURL(file)
+          this.imgButShow = false
+        }
+      },
+    })
+  </script>
+</body>
+<style>
+  .imgWin {
+    display: flex;
+    border: 1px dotted;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+  }
+
+  .imgBut {
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .imgBut-but {
+    font-size: 32px;
+  }
+
+  .imgBut-file {
+    display: none;
+  }
+
+  .imgWin-main {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #000;
+  }
+
+  .imgWin-img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: contain;
+    vertical-align: middle;
+  }
+</style>
+
+</html>
